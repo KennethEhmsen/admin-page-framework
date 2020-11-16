@@ -3,7 +3,7 @@
  * Admin Page Framework
  * 
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  * 
  */
 
@@ -229,9 +229,27 @@ JAVASCRIPTS;
             $_oFormatter             = new AdminPageFramework_Form_Model___Format_RepeatableField( $aArguments, $this->oMsg );
             $_aArguments             = $_oFormatter->get();
             $_sSmallButtonSelector   = $bSmall ? ' button-small' : '';
+            if ( version_compare( $GLOBALS[ 'wp_version' ], '5.3', '>=' ) ) {
+                return "<div " . $this->___getContainerAttributes( $_aArguments ) . " >"
+                        . "<a " . $this->___getRemoveButtonAttributes( $sFieldsContainerID, $_sSmallButtonSelector, $iFieldCount ) . ">"
+                            . "<span class='dashicons dashicons-minus'></span>"
+                        . "</a>"
+                        . "<a " . $this->___getAddButtonAttribtes( $_aArguments, $sFieldsContainerID, $_sSmallButtonSelector ) . ">"
+                            . "<span class='dashicons dashicons-plus-alt2'></span>"
+                        ."</a>"
+                    . "</div>"
+                    . $this->getModalForDisabledRepeatableElement(
+                        'repeatable_field_disabled_' . $sFieldsContainerID,
+                        $_aArguments[ 'disabled' ]
+                    );
+            }
             return "<div " . $this->___getContainerAttributes( $_aArguments ) . " >"
-                    . "<a " . $this->___getRemvoeButtonAttribtes( $sFieldsContainerID, $_sSmallButtonSelector, $iFieldCount ) . ">-</a>"
-                    . "<a " . $this->___getAddButtonAttribtes( $_aArguments, $sFieldsContainerID, $_sSmallButtonSelector ) . ">+</a>"
+                    . "<a " . $this->___getRemoveButtonAttributes( $sFieldsContainerID, $_sSmallButtonSelector, $iFieldCount ) . ">"
+                        . "-"
+                    . "</a>"
+                    . "<a " . $this->___getAddButtonAttribtes( $_aArguments, $sFieldsContainerID, $_sSmallButtonSelector ) . ">"
+                        . "+"
+                    ."</a>"
                 . "</div>"
                 . $this->getModalForDisabledRepeatableElement(
                     'repeatable_field_disabled_' . $sFieldsContainerID,
@@ -264,7 +282,7 @@ JAVASCRIPTS;
              * @param       array       $aArguments
              * @return      string
              */
-            private function ___getRemvoeButtonAttribtes( $sFieldsContainerID, $sSmallButtonSelector, $iFieldCount ) {
+            private function ___getRemoveButtonAttributes( $sFieldsContainerID, $sSmallButtonSelector, $iFieldCount ) {
                 $_aMinusButtonAttributes = array(
                     'class'     => 'repeatable-field-remove-button button-secondary repeatable-field-button button'
                          . $sSmallButtonSelector,

@@ -3,7 +3,7 @@
  * Admin Page Framework Loader
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed GPLv2
+ * Copyright (c) 2013-2020, Michael Uno; Licensed GPLv2
  *
  */
 
@@ -67,7 +67,6 @@ class APF_Demo_CustomFieldType {
             'APF_Demo_CustomFieldType_Path',
             'APF_Demo_CustomFieldType_Toggle',
             'APF_Demo_CustomFieldType_NoUISlider',
-            'APF_Demo_CustomFieldType_ACE',
             'APF_Demo_CustomFieldType_PostTypeTaxonomy',
             'APF_Demo_CustomFieldType_Sample',
             'APF_Demo_CustomFieldType_GitHub',

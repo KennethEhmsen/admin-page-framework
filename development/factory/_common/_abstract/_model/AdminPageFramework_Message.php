@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -173,10 +173,10 @@ class AdminPageFramework_Message {
         'debug_info'                            => 'Debug Info',
         // 3.8.5+
         'debug'                                 => 'Debug',
-        'field_arguments'                       => 'Field Arguments',
+        // 'field_arguments'                       => 'Field Arguments', // @deprecated 3.8.22
         'debug_info_will_be_disabled'           => 'This information will be disabled when <code>WP_DEBUG</code> is set to <code>false</code> in <code>wp-config.php</code>.',
 
-        'section_arguments'                     => 'Section Arguments', // 3.8.8+
+        // 'section_arguments'                     => 'Section Arguments', // 3.8.8+   // @deprecated 3.8.22
 
         'click_to_expand'                       => 'Click here to expand to view the contents.',
         'click_to_collapse'                     => 'Click here to collapse the contents.',
@@ -185,6 +185,9 @@ class AdminPageFramework_Message {
         'loading'                               => 'Loading...',
         'please_enable_javascript'              => 'Please enable JavaScript for better user experience.',
 
+        'submit_confirmation_label'             => 'Submit the form.',
+        'submit_confirmation_error'             => 'Please check this box if you want to proceed.',
+        'import_no_file'                        => 'No file is selected.',
 
     );
 
@@ -207,7 +210,9 @@ class AdminPageFramework_Message {
      *
      * @since       2.1.6
      * @since       3.2.0       Changed it to create an instance per text domain basis.
+     * @param       string      $sTextDomain
      * @remark      This class should be instantiated via this method.
+     * @return      AdminPageFramework_Message
      */
     public static function getInstance( $sTextDomain='admin-page-framework' ) {
 
@@ -228,6 +233,7 @@ class AdminPageFramework_Message {
 
     /**
      * Sets up properties.
+     * @param string $sTextDomain
      */
     public function __construct( $sTextDomain='admin-page-framework' ) {
 
@@ -267,7 +273,8 @@ class AdminPageFramework_Message {
      *
      * @remark      An alias of the __() method.
      * @since       3.2.0
-     * @since       3.7.0      If no key is specified, return the entire mesage array.
+     * @since       3.7.0        If no key is specified, return the entire mesage array.
+     * @param       string       $sKey
      * @return      string|array
      */
     public function get( $sKey='' ) {
@@ -425,14 +432,18 @@ class AdminPageFramework_Message {
         __( 'Please enable JavaScript for better user experience.', 'admin-page-framework' );
 
         __( 'Debug', 'admin-page-framework' );
-        __( 'Field Arguments', 'admin-page-framework' );
+        // __( 'Field Arguments', 'admin-page-framework' ); @deprecated 3.8.22
         __( 'This information will be disabled when <code>WP_DEBUG</code> is set to <code>false</code> in <code>wp-config.php</code>.', 'admin-page-framework' );
 
-        __( 'Section Arguments', 'admin-page-framework' ); // 3.8.8+
+        // __( 'Section Arguments', 'admin-page-framework' ); // 3.8.8+ @deprecated 3.8.22
 
         __( 'The ability to repeat sections is disabled.', 'admin-page-framework' ); // 3.8.13+
         __( 'The ability to repeat fields is disabled.', 'admin-page-framework' ); // 3.8.13+
         __( 'Warning.', 'admin-page-framework' ); // 3.8.13+
+
+        __( 'Submit the form.', 'admin-page-framework' ); // 3.8.24
+        __( 'Please check this box if you want to proceed.', 'admin-page-framework' ); // 3.8.24
+        __( 'No file is selected.', 'admin-page-framework' ); // 3.8.24
 
     }
 

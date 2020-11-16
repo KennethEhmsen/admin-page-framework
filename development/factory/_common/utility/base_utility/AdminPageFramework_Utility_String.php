@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -229,6 +229,16 @@ abstract class AdminPageFramework_Utility_String extends AdminPageFramework_Util
         }
         return substr( $sHaystack, - $_iLength ) === $sNeedle;
 
+    }
+
+    /**
+     * Checks if a given string has back/forward slashes.
+     * @param string $sString
+     * @return boolean
+     */
+    static public function hasSlash( $sString ) {
+        $sString = str_replace( '\\', '/', $sString );
+        return ( false !== strpos( $sString, '/' ) );
     }
 
 }

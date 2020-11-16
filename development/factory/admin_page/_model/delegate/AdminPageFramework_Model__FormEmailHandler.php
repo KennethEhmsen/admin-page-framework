@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -76,6 +76,7 @@ class AdminPageFramework_Model__FormEmailHandler extends AdminPageFramework_Fram
             if ( ! $_sTransient ) {
                 return;
             }
+            $_sTransient = sanitize_text_field( $_sTransient );
             $_aFormEmail = $this->getTransient( $_sTransient );
             $this->deleteTransient( $_sTransient );
             if ( ! is_array( $_aFormEmail ) ) {

@@ -5,7 +5,7 @@
  * Demonstrates the usage of Admin Page Framework.
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed GPLv2
+ * Copyright (c) 2013-2020, Michael Uno; Licensed GPLv2
  *
  */
 
@@ -86,11 +86,6 @@ class APF_NetworkAdmin_ManageOptions extends AdminPageFramework_NetworkAdmin {
             $this,
             $this->sPageSlug,
             'reset'
-        );
-        new APF_Demo_ManageOptions_ResetConfirm(
-            $this,
-            $this->sPageSlug,
-            'reset_confirm'
         );
 
     }

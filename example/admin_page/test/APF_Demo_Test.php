@@ -3,7 +3,7 @@
  * Admin Page Framework Loader
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed GPLv2
+ * Copyright (c) 2013-2020, Michael Uno; Licensed GPLv2
  *
  */
 
@@ -39,7 +39,7 @@ class APF_Demo_Test {
      * @callback        action      set_up_{instantiated class name}
      */
     public function replyToSetUp( $oFactory ) {
-// new AjaxTestCustomFieldType( $oFactory->oProp->sClassName );
+
         /**
          * ( required ) Add sub-menu items (pages or links)
          */
@@ -50,7 +50,7 @@ class APF_Demo_Test {
                 'order'         => 35,
             )
         );
-// new APF_Demo_Test_AjaxField( $oFactory, $this->_sPageSlug );
+
         add_action( 'load_' . $this->_sPageSlug, array( $this, 'replyToLoadPage' ) );
 
     }
@@ -66,6 +66,7 @@ class APF_Demo_Test {
          */
         $_aTabClasses = array(
             'APF_Demo_Test_AjaxField',
+            'APF_Demo_Test_Transients',
         );
         foreach ( $_aTabClasses as $_sTabClassName ) {
             if ( ! class_exists( $_sTabClassName ) ) {

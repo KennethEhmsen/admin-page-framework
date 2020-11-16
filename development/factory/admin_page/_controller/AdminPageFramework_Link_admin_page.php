@@ -3,7 +3,7 @@
  * Admin Page Framework
  * 
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  * 
  */
 
@@ -203,10 +203,10 @@ class AdminPageFramework_Link_admin_page extends AdminPageFramework_Link_Base {
          */
         private function _isPageAdded() {
             
-            if ( ! isset( $_GET['page'] ) ) {
+            if ( ! isset( $_GET[ 'page' ] ) ) {
                 return false;
             }            
-            return ( bool ) $this->oProp->isPageAdded( $_GET['page'] );
+            return ( bool ) $this->oProp->isPageAdded( $_GET[ 'page' ] );
 
         }
     /**

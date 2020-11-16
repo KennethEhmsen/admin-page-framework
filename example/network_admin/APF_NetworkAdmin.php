@@ -5,7 +5,7 @@
  * Demonstrates the usage of Admin Page Framework.
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed GPLv2
+ * Copyright (c) 2013-2020, Michael Uno; Licensed GPLv2
  *
  */
 
@@ -15,6 +15,10 @@ class APF_NetworkAdmin extends AdminPageFramework_NetworkAdmin {
      * Stores WordPress readme parser object.
      */
     public $oWPRMParser;
+
+    public function start() {
+        new APF_NetworkAdmin_Tests( $this->oProp->sClassName );
+    }
 
     /**
      * (required) In the setUp() method, you will define how the pages and the form elements should be composed.

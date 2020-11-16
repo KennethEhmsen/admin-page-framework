@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -46,6 +46,8 @@ class AdminPageFramework_ImportOptions extends AdminPageFramework_CustomSubmitFi
 
     /**
      * Sets up properties.
+     * @param array $aFilesImport
+     * @param array $aPostImport
      */
     public function __construct( $aFilesImport, $aPostImport ) {
 

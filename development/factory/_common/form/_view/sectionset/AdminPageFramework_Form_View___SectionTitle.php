@@ -3,7 +3,7 @@
  * Admin Page Framework
  * 
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  * 
  */
 
@@ -116,17 +116,13 @@ class AdminPageFramework_Form_View___SectionTitle extends AdminPageFramework_For
              * @return      string
              */
             private function _getSectionTitleOutput( $sTitle, $sTag, $aCollapsible ) {
-                
-                $_aSectionset = $this->aArguments[ 'sectionset' ];
                 return $sTitle
                     ? "<{$sTag} class='section-title'>"
                         . $this->_getCollapseButton( $aCollapsible )
                         . $sTitle
-                        . $this->_getToolTip( $_aSectionset )
-                        . $this->_getDebugInfo( $_aSectionset )
+                        . $this->_getToolTip( $this->aArguments[ 'sectionset' ] )
                     . "</{$sTag}>"
                     : '';
-
             }
                 /**
                  * @return      string
@@ -138,41 +134,8 @@ class AdminPageFramework_Form_View___SectionTitle extends AdminPageFramework_For
                         $_sSectionTitleTagID
                     );            
                     return $_oToolTip->get();
-                    
                 }            
-                /**
-                 * Returns an output of the passed field argument.
-                 * @since       3.8.8
-                 * @return      string
-                 */
-                private function _getDebugInfo( $aSectionset ) {
-                                        
-                    if ( ! $aSectionset[ 'show_debug_info' ] ) {
-                        return '';
-                    }
-                    $_oToolTip           = new AdminPageFramework_Form_View___ToolTip(
-                        array(
-                            'title'         => $this->oMsg->get( 'section_arguments' ),
-                            'dash-icon'     => 'dashicons-info',
-                            'icon_alt_text' => '[' . $this->oMsg->get( 'debug' ) . ' ]',
-                            'content'       => AdminPageFramework_Debug::getDetails( $aSectionset )
-                                . '<span class="admin-page-framework-info">'
-                                    . $this->getFrameworkNameVersion()
-                                    . '  ('
-                                        . $this->oMsg->get( 'debug_info_will_be_disabled' )
-                                      . ')'
-                                . '</span>',
-                            'attributes'    => array(
-                                'container' => array(
-                                    'class' => 'debug-info-field-arguments'
-                                ),
-                            )
-                        ),
-                        $aSectionset[ '_section_path' ] . '_debug'
-                    );            
-                    return $_oToolTip->get();                    
-                    
-                }            
+
             /**
              * Returns a collapse button for the 'button' collapsible type.
              * @since       3.7.0

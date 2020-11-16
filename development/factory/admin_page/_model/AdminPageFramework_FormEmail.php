@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -152,7 +152,7 @@ class AdminPageFramework_FormEmail extends AdminPageFramework_FrameworkUtility {
             private function _getPathFromURL( $sURL ) {
 
                 // If it is on the server, this works.
-                $_sPath = realpath( str_replace( get_bloginfo( 'url' ), ABSPATH, $sURL ) );
+                $_sPath = realpath( str_replace( get_bloginfo( 'url' ), preg_replace( '/[\/\\\\]wp-content$/', '', rtrim( WP_CONTENT_DIR, '/\\' ) ), $sURL ) );
                 if ( $_sPath ) {
                     return $_sPath;
                 }

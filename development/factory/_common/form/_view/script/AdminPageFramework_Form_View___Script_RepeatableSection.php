@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -165,7 +165,7 @@ class AdminPageFramework_Form_View___Script_RepeatableSection extends AdminPageF
         _incrementAttributes( nodeNewSection, _iSectionIndex, nodeSectionsContainer );
 
         // It seems radio buttons of the original field need to be reassigned. Otherwise, the checked items will be gone. 
-        nodeSectionContainer.find( 'input[type=radio][checked=checked]' ).attr( 'checked', 'checked' );    
+        nodeSectionContainer.find( 'input[type=radio][checked=checked]' ).prop( 'checked', true );    
 
         // Iterate each field one by one.
         $( nodeNewSection ).find( '.admin-page-framework-field' ).each( function( iFieldIndex ) {
@@ -453,16 +453,7 @@ JAVASCRIPTS;
         new self( $oMsg );
         $_oFormatter    = new AdminPageFramework_Form_Model___Format_RepeatableSection( $asArguments, $oMsg );
         $_aArguments    = $_oFormatter->get();
-        $_sButtons      = "<div class='admin-page-framework-repeatable-section-buttons-outer-container'>"
-                . "<div " . self::___getContainerAttributes( $_aArguments, $oMsg ) . ' >'
-                    . "<a " . self::___getRemoveButtonAttributes( $sContainerTagID, $oMsg, $iSectionCount ) . ">-</a>"
-                    . "<a " . self::___getAddButtonAttributes( $sContainerTagID, $oMsg, $_aArguments ) . ">+</a>"
-                . "</div>"
-            . "</div>"
-            . AdminPageFramework_Form_Utility::getModalForDisabledRepeatableElement(
-                'repeatable_section_disabled_' . $sContainerTagID,
-                $_aArguments[ 'disabled' ]
-            );
+        $_sButtons      = self::___getRepeatableSectionButtons( $_aArguments, $oMsg, $sContainerTagID, $iSectionCount );
         $_sButtonsHTML  = '"' . $_sButtons . '"';
         $_aJSArray      = json_encode( $_aArguments );
         $_sScript       = <<<JAVASCRIPTS
@@ -497,7 +488,32 @@ JAVASCRIPTS;
             . "</script>";
 
     }
-
+        /**
+         * @return string
+         * @since   3.8.22
+         */
+        static private function ___getRepeatableSectionButtons( $_aArguments, $oMsg, $sContainerTagID, $iSectionCount ) {
+            $_sIconRemove   = '-';
+            $_sIconAdd      = '+';
+            if ( version_compare( $GLOBALS[ 'wp_version' ], '5.3', '>=' ) ) {
+                $_sIconRemove   = "<span class='dashicons dashicons-minus'></span>";
+                $_sIconAdd      = "<span class='dashicons dashicons-plus-alt2'></span>";
+            }
+            return "<div class='admin-page-framework-repeatable-section-buttons-outer-container'>"
+                . "<div " . self::___getContainerAttributes( $_aArguments, $oMsg ) . ' >'
+                    . "<a " . self::___getRemoveButtonAttributes( $sContainerTagID, $oMsg, $iSectionCount ) . ">"
+                        . $_sIconRemove
+                    . "</a>"
+                    . "<a " . self::___getAddButtonAttributes( $sContainerTagID, $oMsg, $_aArguments ) . ">"
+                        . $_sIconAdd
+                    . "</a>"
+                . "</div>"
+            . "</div>"
+            . AdminPageFramework_Form_Utility::getModalForDisabledRepeatableElement(
+                    'repeatable_section_disabled_' . $sContainerTagID,
+                    $_aArguments[ 'disabled' ]
+                );
+        }
         /**
          * @param   $aArguments
          * @return  string
@@ -518,7 +534,7 @@ JAVASCRIPTS;
             return self::getAttributes( $_aAttriubtes ) . ' ' . self::getDataAttributes( $aArguments );
         }
         /**
-         * @return  array
+         * @return  string
          * @sicne   3.8.13
          */
         static private function ___getRemoveButtonAttributes( $sContainerTagID, $oMsg, $iSectionCount ) {
@@ -537,7 +553,7 @@ JAVASCRIPTS;
 
         /**
          * @since       3.8.13
-         * @return array
+         * @return string
          */
         static private function ___getAddButtonAttributes( $sContainerTagID, $oMsg, $aArguments ) {
             return self::getAttributes(

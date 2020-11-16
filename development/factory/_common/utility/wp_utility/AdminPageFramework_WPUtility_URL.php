@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -21,16 +21,17 @@ class AdminPageFramework_WPUtility_URL extends AdminPageFramework_Utility {
      * Retrieves the current URL in the admin page.
      *
      * @since 2.1.1
+     * @return string
      */
     static public function getCurrentAdminURL() {
 
-        $sRequestURI    = $GLOBALS['is_IIS'] ? $_SERVER['PATH_INFO'] : $_SERVER["REQUEST_URI"];
-        $sPageURL       = 'on' == @$_SERVER["HTTPS"] ? "https://" : "http://";
+        $sRequestURI    = $GLOBALS[ 'is_IIS' ] ? $_SERVER[ 'PATH_INFO' ] : $_SERVER[ "REQUEST_URI" ];
+        $sPageURL       = 'on' == @$_SERVER[ "HTTPS" ] ? "https://" : "http://";
 
-        if ( "80" != $_SERVER["SERVER_PORT"] ) {
-            $sPageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $sRequestURI;
+        if ( "80" != $_SERVER[ "SERVER_PORT" ] ) {
+            $sPageURL .= $_SERVER[ "SERVER_NAME" ] . ":" . $_SERVER[ "SERVER_PORT" ] . $sRequestURI;
         } else {
-            $sPageURL .= $_SERVER["SERVER_NAME"] . $sRequestURI;
+            $sPageURL .= $_SERVER[ "SERVER_NAME" ] . $sRequestURI;
         }
         return $sPageURL;
 
@@ -91,11 +92,12 @@ class AdminPageFramework_WPUtility_URL extends AdminPageFramework_Utility {
      * @static
      * @access  public
      * @return  string The source url
+     * @param   string $sFilePath
      */
     static public function getSRCFromPath( $sFilePath ) {
 
         $_oWPStyles      = new WP_Styles(); // It doesn't matter whether the file is a style or not. Just use the built-in WordPress class to calculate the SRC URL.
-        $_sRelativePath  = AdminPageFramework_Utility::getRelativePath( ABSPATH, $sFilePath );
+        $_sRelativePath  = AdminPageFramework_Utility::getRelativePath( preg_replace( '/[\/\\\\]wp-content$/', '', rtrim( WP_CONTENT_DIR, '/\\' ) ), $sFilePath );
         $_sRelativePath  = preg_replace( "/^\.[\/\\\]/", '', $_sRelativePath, 1 ); // removes the heading ./ or .\
         $_sHref          = trailingslashit( $_oWPStyles->base_url ) . $_sRelativePath;
         unset( $_oWPStyles ); // for PHP 5.2.x or below
@@ -113,6 +115,8 @@ class AdminPageFramework_WPUtility_URL extends AdminPageFramework_Utility {
      * @since       3.6.0       Changed the name from `resolveSRC()`.
      * @since       3.7.9       Changed not to escape characters.
      * @return      string|null
+     * @param       string      $sSRC
+     * @param       boolean     $bReturnNullIfNotExist
      */
     static public function getResolvedSRC( $sSRC, $bReturnNullIfNotExist=false ) {
 
@@ -142,6 +146,9 @@ class AdminPageFramework_WPUtility_URL extends AdminPageFramework_Utility {
     }
         /**
          * @deprecated      3.6.0       Use `getResolvedSRC()` instead.
+         * @param string $sSRC
+         * @param boolean $bReturnNullIfNotExist
+         * @return string
          */
         static public function resolveSRC( $sSRC, $bReturnNullIfNotExist=false ) {
             return self::getResolvedSRC( $sSRC, $bReturnNullIfNotExist );

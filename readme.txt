@@ -3,8 +3,8 @@ Contributors:       Michael Uno, miunosoft, pcraig3
 Donate link:        http://michaeluno.jp/en/donate
 Tags:               admin pages, developers, options, settings, API, framework, library, meta box, custom post type, fields, widgets, forms, plugins, themes
 Requires at least:  3.4
-Tested up to:       5.2.1
-Stable tag:         3.8.20
+Tested up to:       5.5.3
+Stable tag:         3.8.24
 License:            GPLv2 or later
 License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -538,6 +538,37 @@ Alternately, you may use the `options_{instantiated class name}` filter to suppr
 See examples, https://gist.github.com/michaeluno/c30713fcfe0d9d45d89f, https://gist.github.com/michaeluno/fcfac27825aa8a35b90f,
 
 == Changelog ==
+
+= 3.8.24 - 2020/11/14 =
+- Added the `confirm` argument for the `submit` field type.
+- Added a message to appear when the submit button of the `import` field type is clicked without uploading a file.
+- Tweaked the style of the `import` field type.
+- Fixed non-sanitized HTTP request arrays.
+- Fixed a bug that field capability did not inherit from its section properly.
+- Changed the behavior of the textarea of the system field type not to select text on click.
+- Removed the `ace` custom field type as it was warned by the wordpress.org plugin team not to load files remotely.
+
+= 3.8.23 - 2020/11/05 =
+- Added the ability to automatically insert the current in-page tab title in the page title.
+- Added some utility methods dealing with transients.
+- Fixed a bug with the `AdminPageFramework_Utility::getCurrentURL()` method that an extra port was inserted with the server with a custom port.
+
+= 3.8.22 - 2020/09/11 =
+- Added parameters for the `AdminPageFramework_Debug::log()` method that let the user set a log file name, whether to include a stack trace, and the truncation lengths for strings and arrays.
+- Tweaked the style of repeatable buttons and dash-icon buttons for WordPress 5.3 or above.
+- Changed the form nonce lifespan to 2 days from 1 hour.
+- Changed the `id` attribute of internal styles and scripts to be all lower-cased.
+- Fixed a bug with the `select2` custom field type that repeated select2 field was not selectable.
+- Fixed a bug that some internal styles were not minified when the site debug mode is turned off.
+- Fixed a bug that same values of internal styles and scripts with the `style_{extended class name}`, `style_ie_{extended class name}` and `script_{extended class name}` were inserted multiple times.
+- Fixed a bug that the collapsible section toggle icons were not toggled.
+- Fixed a bug that in `admin-ajax.php` unnecessary callbacks were loaded.
+- Deprecated debug information for section and field arguments.
+
+= 3.8.21 - 2019/08/19 =
+- Fixed an incompatibility issue with WordPress 5.5 regarding radio buttons.
+- Fixed an issue of a PHP warning of an undefined index `file`.
+- Fixed an incompatibility issue with wordpress.com.
 
 = 3.8.20 - 2019/05/31 =
 - Fixed the PHP error `Call to undefined method WP_Error::get_items()` in the Add-ons page when fetching feeds failed.

@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -285,14 +285,18 @@ abstract class AdminPageFramework_PostType_View extends AdminPageFramework_PostT
             $this->oProp->sStyle .= $this->_getStylesForPostTypeScreenIcon( $this->oProp->aPostTypeArgs[ 'screen_icon' ] );
         }
 
-        $this->oProp->sStyle = $this->oUtil->addAndApplyFilters( $this, "style_{$this->oProp->sClassName}", $this->oProp->sStyle );
+        $_sStyle = $this->oUtil->isDebugMode()
+            ? $this->oProp->sStyle
+            : $this->oUtil->getCSSMinified( $this->oProp->sStyle );
+        $_sStyle = trim( $_sStyle );
 
         // Print out the filtered styles.
-        if ( ! empty( $this->oProp->sStyle ) ) {
+        if ( ! empty( $_sStyle ) ) {
             echo "<style type='text/css' id='admin-page-framework-style-post-type'>"
                     . $this->oProp->sStyle
                 . "</style>";
         }
+        $this->oProp->sStyle = '';
 
     }
         /**

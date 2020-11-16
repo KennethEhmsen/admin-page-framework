@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -52,10 +52,10 @@ abstract class AdminPageFramework_TaxonomyField extends AdminPageFramework_Taxon
         }
 
         // Properties
-        $_sProprtyClassName = isset( $this->aSubClassNames[ 'oProp' ] )
+        $_sPropertyClassName = isset( $this->aSubClassNames[ 'oProp' ] )
             ? $this->aSubClassNames[ 'oProp' ]
             : 'AdminPageFramework_Property_' . $this->_sStructureType;
-        $this->oProp        = new $_sProprtyClassName(
+        $this->oProp        = new $_sPropertyClassName(
             $this,
             get_class( $this ),
             $sCapability,

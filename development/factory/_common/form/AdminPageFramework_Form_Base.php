@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -15,6 +15,24 @@
  * @internal
  */
 abstract class AdminPageFramework_Form_Base extends AdminPageFramework_Form_Utility {
+
+    /**
+     * A submit notice object.
+     * @var AdminPageFramework_Form___SubmitNotice
+     */
+    public $oSubmitNotice;
+
+    /**
+     * A field error object.
+     * @var AdminPageFramework_Form___FieldError
+     */
+    public $oFieldError;
+
+    /**
+     * Last inputs handler object.
+     * @var AdminPageFramework_Form_Model___LastInput
+     */
+    public $oLastInputs;
 
     /**
      * Stores resource items.

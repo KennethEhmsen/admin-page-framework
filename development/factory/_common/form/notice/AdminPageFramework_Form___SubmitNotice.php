@@ -3,7 +3,7 @@
  * Admin Page Framework
  * 
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  * 
  */
 
@@ -203,14 +203,14 @@ class AdminPageFramework_Form___SubmitNotice extends AdminPageFramework_Framewor
          */
         private function _printNotices( $aNotices ) {
             
-            $_aPeventDuplicates = array();
+            $_aPreventDuplicates = array();
             foreach ( array_filter( ( array ) $aNotices, 'is_array' ) as $_aNotice ) {
                 
                 $_sNotificationKey = md5( serialize( $_aNotice ) );
-                if ( isset( $_aPeventDuplicates[ $_sNotificationKey ] ) ) {
+                if ( isset( $_aPreventDuplicates[ $_sNotificationKey ] ) ) {
                     continue;
                 }
-                $_aPeventDuplicates[ $_sNotificationKey ] = true;
+                $_aPreventDuplicates[ $_sNotificationKey ] = true;
                 
                 new AdminPageFramework_AdminNotice(
                     $this->getElement( $_aNotice, 'sMessage' ),

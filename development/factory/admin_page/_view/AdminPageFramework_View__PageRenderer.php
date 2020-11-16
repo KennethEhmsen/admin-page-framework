@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -285,10 +285,7 @@ class AdminPageFramework_View__PageRenderer extends AdminPageFramework_Framework
             if ( ! $fEnableForm ) {
                 return;
             }
-
-            $_sNonceTransientKey    = 'form_' . md5( $this->oFactory->oProp->sClassName . get_current_user_id() );
-            $_sNonce                = $this->getTransient( $_sNonceTransientKey, '_admin_page_framework_form_nonce_' . uniqid() );
-            $this->setTransient( $_sNonceTransientKey, $_sNonce, 60*60 ); // 60 minutes
+            $_sNonce = wp_create_nonce( 'form_' . md5( $this->oFactory->oProp->sClassName . get_current_user_id() ) );
             echo "<input type='hidden' name='page_slug' value='{$sPageSlug}' />" . PHP_EOL
                 . "<input type='hidden' name='tab_slug' value='{$sTabSlug}' />" . PHP_EOL
                 . "<input type='hidden' name='_is_admin_page_framework' value='{$_sNonce}' />" . PHP_EOL

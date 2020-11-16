@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -49,7 +49,7 @@ abstract class AdminPageFramework_MetaBox extends AdminPageFramework_MetaBox_Con
      * @param       string|array      $asPostTypeOrScreenID     (optional) The post type(s) or screen ID that the meta box is associated with.
      * @param       string            $sContext                 (optional) The part of the page where the edit screen section should be shown ('normal', 'advanced', or 'side') Default: `normal`.
      * @param       string            $sPriority                (optional) The priority within the context where the boxes should show ('high', 'core', 'default' or 'low') Default: `default`.
-     * @param       string            $sPriority                (optional) The <a href="http://codex.wordpress.org/Roles_and_Capabilities">access level</a> to the meta box. Default: `edit_posts`.
+     * @param       string            $sCapability              (optional) The <a href="http://codex.wordpress.org/Roles_and_Capabilities">access level</a> to the meta box. Default: `edit_posts`.
      * @param       string            $sTextDomain              (optional) The text domain applied to the displayed text messages. Default: `admin-page-framework`.
      * @return      void
      */
@@ -63,10 +63,10 @@ abstract class AdminPageFramework_MetaBox extends AdminPageFramework_MetaBox_Con
         }
 
         // A property object needs to be done first.
-        $_sProprtyClassName = isset( $this->aSubClassNames[ 'oProp' ] )
+        $_sPropertyClassName = isset( $this->aSubClassNames[ 'oProp' ] )
             ? $this->aSubClassNames[ 'oProp' ]
             : 'AdminPageFramework_Property_' . $this->_sStructureType;
-        $this->oProp                = new $_sProprtyClassName(
+        $this->oProp                = new $_sPropertyClassName(
             $this,
             get_class( $this ),
             $sCapability,

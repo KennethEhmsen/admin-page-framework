@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -258,7 +258,7 @@ abstract class AdminPageFramework_Factory_Router {
                 return false;
             }
             $_sAction = isset( $_POST[ 'action' ] ) ? $_POST[ 'action' ] : '';
-            return in_array( $_sAction, array( 'heartbeat', 'closed-postboxes', 'meta-box-order' ) );
+            return in_array( $_sAction, array( 'heartbeat', 'closed-postboxes', 'meta-box-order' ), true );
         }
 
     /**
@@ -357,6 +357,8 @@ abstract class AdminPageFramework_Factory_Router {
      * This is used to instantiate classes only when necessary, rather than instantiating them all at once.
      *
      * @internal
+     * @param       string $sPropertyName
+     * @return      mixed
      */
     public function __get( $sPropertyName ) {
 

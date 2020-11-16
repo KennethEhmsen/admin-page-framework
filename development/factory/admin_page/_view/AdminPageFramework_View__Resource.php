@@ -3,7 +3,7 @@
  * Admin Page Framework
  *
  * http://admin-page-framework.michaeluno.jp/
- * Copyright (c) 2013-2019, Michael Uno; Licensed MIT
+ * Copyright (c) 2013-2020, Michael Uno; Licensed MIT
  *
  */
 
@@ -117,9 +117,9 @@ class AdminPageFramework_View__Resource extends AdminPageFramework_FrameworkUtil
              * @return      void
              */
             private function _enqueuePageAssets( array $aPageAssets, $sType='style' ) {
-                $_sMathodName = "_enqueueAsset_" . $sType;
+                $_sMethodName = "_enqueueAsset_" . $sType;
                 foreach( $aPageAssets as $_asPageAsset ) {
-                    $this->{$_sMathodName}( $_asPageAsset);
+                    $this->{$_sMethodName}( $_asPageAsset);
                 }
             }
 
